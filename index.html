@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Evaluation Comparison with Radar</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Evaluation Comparison with Radar">
+  <meta name="author" content="Marta Kaczmarz">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Evaluation Comparison with Radar</h1>
+    <h2>My first presentation</h2>
+    <p>Marta Kaczmarz<br/>Kruk S.A.</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>What is an EvaluatorComparison with Radar</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>It is a shiny app which I created for Devoloping Data Products course on coursera.org. </p>
+
+<p>The idea was to see on one plot how my competitions where evaluated by other people i.e. team leader and workmates. I want to use some non popular chart but still the chart which summarize a basic information and is visually preatty ;).</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example data</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The example data is eveluation of my competition in my job. The data should be in csv file. In fact you can use different type of data, the things that you want to compare should be in rows and the features in the columns.</p>
+
+<p>Example data frame:</p>
+
+<pre><code>##                 Work_Planning Goal_orienting Openness_On_Changes
+## Self assessment          3.00           3.60                3.75
+## Team Leader              3.25           3.40                3.50
+## Team mates               3.20           3.31                3.28
+##                 Cooperation Communication Inference Knowlege
+## Self assessment         3.5          3.40      3.00     3.25
+## Team Leader             4.0          3.29      3.25     3.23
+## Team mates              3.3          3.40      3.36     3.25
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What is the Radar plot</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Radar plot is also called &#39;spider plots&#39; or &#39;web plots&#39;. It can succinctly summarize a lot of information, and is visually pleasing.</p>
+
+<p>Basically it take a data frame, scale all numeric columns, and then plot how far above/below average (the thick black line) each of the values are for a particular row of data.</p>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Where you can find it?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>You can see this app on shinyapps.io :</p>
+
+<p><a href="http://martakacz.shinyapps.io/EvaluationComparisonApp">http://martakacz.shinyapps.io/EvaluationComparisonApp</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='What is an EvaluatorComparison with Radar'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Example data'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='What is the Radar plot'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Where you can find it?'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

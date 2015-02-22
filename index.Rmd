@@ -1,0 +1,113 @@
+---
+title       : Evaluation Comparison with Radar
+subtitle    : My first presentation
+author      : Marta Kaczmarz
+job         : Kruk S.A.
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+
+## What is an EvaluatorComparison with Radar
+
+It is a shiny app which I created for Devoloping Data Products course on coursera.org. 
+
+The idea was to see on one plot how my competitions where evaluated by other people i.e. team leader and workmates. I want to use some non popular chart but still the chart which summarize a basic information and is visually preatty ;).
+
+--- .class #id 
+
+## Example data
+
+The example data is eveluation of my competition in my job. The data should be in csv file. In fact you can use different type of data, the things that you want to compare should be in rows and the features in the columns.
+
+Example data frame:
+```{r,echo = FALSE}
+m<-matrix(data = c(3.00,  3.60,	3.75,	3.50,	3.40,	3.00,	3.25,3.25,	3.40,	3.50,	4.00,	3.29,	3.25,	3.23, 3.20,	3.31,	3.28,	3.30,	3.40,	3.36,	3.25), nrow = 3, ncol = 7, byrow = TRUE)
+rownames(m) <- c("Self assessment","Team Leader","Team mates")
+colnames(m) <- c("Work_Planning",	"Goal_orienting", "Openness_On_Changes",	"Cooperation",	"Communication", "Inference",	"Knowlege")
+m <- data.frame(m)
+m
+```
+
+--- .class #id 
+
+## What is the Radar plot
+
+Radar plot is also called 'spider plots' or 'web plots'. It can succinctly summarize a lot of information, and is visually pleasing.
+
+Basically it take a data frame, scale all numeric columns, and then plot how far above/below average (the thick black line) each of the values are for a particular row of data.
+
+
+```{r,echo = FALSE}
+
+webplot = function(data, data.row = NULL, y.cols = NULL, main = NULL, add = F, 
+                   col = "red", lty = 1, scale = T) {
+  if (!is.matrix(data) & !is.data.frame(data)) 
+    stop("Requires matrix or data.frame")
+  if (is.null(y.cols)) 
+    y.cols = colnames(data)[sapply(data, is.numeric)]
+  if (sum(!sapply(data[, y.cols], is.numeric)) > 0) {
+    out = paste0("\"", colnames(data)[!sapply(data, is.numeric)], "\"", 
+                 collapse = ", ")
+    stop(paste0("All y.cols must be numeric\n", out, " are not numeric"))
+  }
+  if (is.null(data.row)) 
+    data.row = 1
+  if (is.character(data.row)) 
+    if (data.row %in% rownames(data)) {
+      data.row = which(rownames(data) == data.row)
+    } else {
+      stop("Invalid value for data.row:\nMust be a valid rownames(data) or row-index value")
+    }
+  if (is.null(main)) 
+    main = rownames(data)[data.row]
+  if (scale == T) {
+    data = scale(data[, y.cols])
+    data = apply(data, 2, function(x) x/max(abs(x)))
+  }
+  data = as.data.frame(data)
+  n.y = length(y.cols)
+  min.rad = 360/n.y
+  polar.vals = (90 + seq(0, 360, length.out = n.y + 1)) * pi/180
+  
+  # 
+  if (add == F) {
+    plot(0, xlim = c(-2.2, 2.2), ylim = c(-2.2, 2.2), type = "n", axes = F, 
+         xlab = "", ylab = "")
+    title(main)
+    lapply(polar.vals, function(x) lines(c(0, 2 * cos(x)), c(0, 2 * sin(x))))
+    lapply(1:n.y, function(x) text(2.15 * cos(polar.vals[x]), 2.15 * sin(polar.vals[x]), 
+                                   y.cols[x], cex = 0.8))
+    
+    lapply(seq(0.5, 2, 0.5), function(x) lines(x * cos(seq(0, 2 * pi, length.out = 100)), 
+                                               x * sin(seq(0, 2 * pi, length.out = 100)), lwd = 0.5, lty = 2, col = "gray60"))
+    lines(cos(seq(0, 2 * pi, length.out = 100)), sin(seq(0, 2 * pi, length.out = 100)), 
+          lwd = 1.2, col = "gray50")
+  }
+  
+  
+  r = 1 + data[data.row, y.cols]
+  xs = r * cos(polar.vals)
+  ys = r * sin(polar.vals)
+  xs = c(xs, xs[1])
+  ys = c(ys, ys[1])
+  
+  lines(xs, ys, col = col, lwd = 2, lty = lty)
+  
+}
+
+ webplot(m,col = "blue")
+```
+
+--- .class #id 
+
+## Where you can find it?
+
+You can see this app on shinyapps.io :
+
+http://martakacz.shinyapps.io/EvaluationComparisonApp
+
